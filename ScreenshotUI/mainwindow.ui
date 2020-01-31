@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>586</width>
-    <height>469</height>
+    <width>618</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,10 +43,10 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
       <width>211</width>
-      <height>421</height>
+      <height>441</height>
      </rect>
     </property>
     <property name="title">
@@ -152,16 +152,16 @@
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton_14">
+      <widget class="QRadioButton" name="radioButton_15">
        <property name="text">
-        <string>T-胚芽</string>
+        <string>T-间变细胞</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton_15">
+      <widget class="QRadioButton" name="radioButton_14">
        <property name="text">
-        <string>T-间变细胞</string>
+        <string>T-胚芽</string>
        </property>
       </widget>
      </item>
@@ -223,7 +223,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>586</width>
+     <width>618</width>
      <height>22</height>
     </rect>
    </property>

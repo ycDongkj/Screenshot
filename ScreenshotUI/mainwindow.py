@@ -95,7 +95,8 @@ class Mymainwindow(Ui_MainWindow):
             self.savePath = self.savefolderPath + self.splt + self.imgname
             self.pathEdit.setText(self.savePath)
             self.saveButton.setEnabled(True)
-            self.saveImg()
+            if self.checkBox.isChecked():
+                self.saveImg()
             # self.textBrowser.
         else:
             pass
