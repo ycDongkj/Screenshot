@@ -91,7 +91,8 @@ class Mymainwindow(Ui_MainWindow):
             self.normalized()
             self.img = ImageQt.ImageQt(im)
             self.label.setPixmap(QPixmap.fromImage(self.img.scaled(291,301, Qt.KeepAspectRatio)))
-            self.imgname = '_'.join(str(time.time()).split('.')) + self.imgformat
+            curtime = time.localtime()
+            self.imgname = time.strftime("%Y%m%d", curtime)+'-'+self.type+'-'+'_'.join(str(time.time()).split('.')) + self.imgformat
             self.savePath = self.savefolderPath + self.splt + self.imgname
             self.pathEdit.setText(self.savePath)
             self.saveButton.setEnabled(True)
