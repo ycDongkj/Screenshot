@@ -14,6 +14,7 @@ class Mymainwindow(Ui_MainWindow):
         self.imgformat = '.png'
         self.imgname = ''
         self.rootPath = '.'
+        self.lastsave = ''
         self.timer = QTimer(mainwindow)
         self.timer.timeout.connect(self.getImage)
         self.timer.start(500)
@@ -41,6 +42,18 @@ class Mymainwindow(Ui_MainWindow):
 
         self.saveButton.clicked.connect(self.saveImg)
         self.selpathButton.clicked.connect(self.selPath)
+        self.dellastButton.clicked.connect(self.dellast)
+        self.dellastButton.setEnabled(False)
+        self.checkBox.setChecked(False)
+        self.saveButton.setEnabled(False)
+
+
+    def dellast(self):
+        if os.path.exists(self.lastsave):
+            os.remove(self.lastsave)
+            self.label.clear()
+            self.dellastButton.setEnabled(False)
+            self.pathEdit.setText('')
 
     def selPath(self):
         self.rootPath = QFileDialog.getExistingDirectory(self.mainwindow, '选择文件夹')
@@ -52,7 +65,10 @@ class Mymainwindow(Ui_MainWindow):
         if not os.path.exists(self.savefolderPath):
             os.makedirs(self.savefolderPath)
         self.pilimg.save(self.savePath)
+        self.lastsave = self.savePath
         self.minimized()
+        self.dellastButton.setEnabled(True)
+        self.saveButton.setEnabled(False)
 
     def seltype(self):
         typebutton = self.mainwindow.sender()
@@ -78,6 +94,8 @@ class Mymainwindow(Ui_MainWindow):
             self.imgname = '_'.join(str(time.time()).split('.')) + self.imgformat
             self.savePath = self.savefolderPath + self.splt + self.imgname
             self.pathEdit.setText(self.savePath)
+            self.saveButton.setEnabled(True)
+            self.saveImg()
             # self.textBrowser.
         else:
             pass
