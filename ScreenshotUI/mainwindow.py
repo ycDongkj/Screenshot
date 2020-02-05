@@ -13,6 +13,7 @@ class Mymainwindow(Ui_MainWindow):
         self.splt = '/'
         self.imgformat = '.png'
         self.imgname = ''
+        self.predix = ''
         self.rootPath = '.'
         self.lastsave = ''
         self.timer = QTimer(mainwindow)
@@ -51,9 +52,9 @@ class Mymainwindow(Ui_MainWindow):
     def dellast(self):
         if os.path.exists(self.lastsave):
             os.remove(self.lastsave)
-            self.label.clear()
-            self.dellastButton.setEnabled(False)
-            self.pathEdit.setText('')
+        self.label.clear()
+        self.dellastButton.setEnabled(False)
+        self.pathEdit.setText('')
 
     def selPath(self):
         self.rootPath = QFileDialog.getExistingDirectory(self.mainwindow, '选择文件夹')
@@ -74,6 +75,7 @@ class Mymainwindow(Ui_MainWindow):
         typebutton = self.mainwindow.sender()
         self.type = typebutton.text()
         self.savefolderPath = self.rootPath + self.splt + self.type 
+        self.imgname = self.predix+'-'+self.type+'-'+'_'.join(str(time.time()).split('.')) + self.imgformat
         self.savePath = self.savefolderPath + self.splt + self.imgname
         self.pathEdit.setText(self.savePath)
 
@@ -91,8 +93,8 @@ class Mymainwindow(Ui_MainWindow):
             self.normalized()
             self.img = ImageQt.ImageQt(im)
             self.label.setPixmap(QPixmap.fromImage(self.img.scaled(291,301, Qt.KeepAspectRatio)))
-            curtime = time.localtime()
-            self.imgname = time.strftime("%Y%m%d", curtime)+'-'+self.type+'-'+'_'.join(str(time.time()).split('.')) + self.imgformat
+            self.predix = time.strftime("%Y%m%d", time.localtime())
+            self.imgname = self.predix+'-'+self.type+'-'+'_'.join(str(time.time()).split('.')) + self.imgformat
             self.savePath = self.savefolderPath + self.splt + self.imgname
             self.pathEdit.setText(self.savePath)
             self.saveButton.setEnabled(True)
